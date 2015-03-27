@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=south": { "model": "nucraftpower:carbonGenerator_model" },
+        "facing=north": { "model": "nucraftpower:carbonGenerator_model", "y": 180 },
+        "facing=east":  { "model": "nucraftpower:carbonGenerator_model", "y": 270 },
+        "facing=west":  { "model": "nucraftpower:carbonGenerator_model", "y": 90 }
+    }
+}

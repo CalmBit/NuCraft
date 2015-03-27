@@ -1,0 +1,24 @@
+{
+	"variants":
+	{
+		"facing=east": 
+		{
+			"model": "nucraftpower:copperCable"
+		},
+		"facing=south":
+		{
+			"model": "nucraftpower:copperCable",
+			"y": 90
+		},
+		"facing=west": 
+		{
+			"model": "nucraftpower:copperCable",
+			"y": 180
+		},
+		"facing=north": 
+		{
+			"model": "nucraftpower:copperCable",
+			"y": 270
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "nucraftpower:blocks/copperOre",
+        "up": "nucraftpower:blocks/copperOre",
+        "north": "nucraftpower:blocks/copperOre",
+        "east": "nucraftpower:blocks/copperOre",
+        "south": "nucraftpower:blocks/copperOre",
+        "west": "nucraftpower:blocks/copperOre",
+        "particle": "nucraftpower:blocks/copperOre"
+    }
+}

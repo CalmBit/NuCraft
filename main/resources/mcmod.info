@@ -1,0 +1,16 @@
+[
+{
+  "modid": "NuCraftPower",
+  "name": "Nu-Craft Power",
+  "description": "Nu-Craft Power: Electricity?",
+  "version": "0.0.1",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["EB547"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

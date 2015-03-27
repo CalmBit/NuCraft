@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "side": "nucraftpower:blocks/carbonGeneratorSides",  
+        "top": "nucraftpower:blocks/carbonGeneratorSides",   
+        "front":"nucraftpower:blocks/carbonGeneratorFront"
+    }
+}
