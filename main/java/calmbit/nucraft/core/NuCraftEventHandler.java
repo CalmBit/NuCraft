@@ -7,6 +7,7 @@ import java.util.Map;
 import calmbit.nucraft.rift.EntityMaercs;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -86,6 +87,23 @@ public class NuCraftEventHandler {
             		render.drawStringWithShadow("Meta: " + block.getDamageValue(mc.theWorld, x, y, z), width - render.getStringWidth("Meta: " + block.getDamageValue(mc.theWorld, x, y, z)) - 10, 2 + 9 * 10, Color.WHITE.getRGB());
             		
         		}
+        	}
+        }
+        
+        @SubscribeEvent
+        public void onItemCrafted(ItemCraftedEvent event)
+        {
+        	if(event.crafting.getItem() == Item.getItemFromBlock(NuCraft.machineCasing))
+        	{
+        		event.player.addStat(NuCraft.machineFrame, 1);
+        	}
+        	else if(event.crafting.getItem() == Item.getItemFromBlock(NuCraft.carbonGenerator))
+        	{
+        		event.player.addStat(NuCraft.makingEnergy, 1);
+        	}
+        	else if(event.crafting.getItem() == Item.getItemFromBlock(NuCraft.compressor))
+        	{
+        		event.player.addStat(NuCraft.compression, 1);
         	}
         }
 }

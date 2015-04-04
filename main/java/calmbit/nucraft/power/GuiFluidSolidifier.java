@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -43,6 +45,9 @@ public class GuiFluidSolidifier extends GuiContainer {
 		double solidifyRemaining = tileEntity.solidifyTime == 0 ? 0 : 200/tileEntity.solidifyTime;
 		int xOffsetArrow = (int)((1.0 - solidifyRemaining) * ARROW_WIDTH);
 		drawTexturedModalRect(guiLeft + ARROW_XPOS + xOffsetArrow, guiTop + ARROW_YPOS, ARROW_UVX + xOffsetArrow, ARROW_UVY, ARROW_WIDTH - xOffsetArrow, ARROW_HEIGHT);
+		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+		drawTexturedModelRectFromIcon(guiLeft + FLUID_OVERLAY_XPOS, guiTop + FLUID_OVERLAY_YPOS, this.tileEntity.getTankInfo(null)[0].fluid.getFluid().getBlock().getIcon(0, 0), FLUID_OVERLAY_WIDTH, FLUID_OVERLAY_HEIGHT);
+		Minecraft.getMinecraft().getTextureManager().bindTexture(guiTexture);
 		drawTexturedModalRect(guiLeft + FLUID_OVERLAY_XPOS, guiTop + FLUID_OVERLAY_YPOS, FLUID_OVERLAY_UVX, FLUID_OVERLAY_UVY, FLUID_OVERLAY_WIDTH, FLUID_OVERLAY_HEIGHT);
 	}
 	

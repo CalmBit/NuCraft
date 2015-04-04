@@ -2,6 +2,7 @@ package calmbit.nucraft.core;
 
 import java.util.Random;
 
+import calmbit.nucraft.rift.WorldGenPlasmaticTrees;
 import calmbit.nucraft.world.WorldGenCherryTrees;
 import calmbit.nucraft.world.WorldGenElmTrees;
 import calmbit.nucraft.world.WorldGenHellTrees;
@@ -64,6 +65,7 @@ public class NuCraftWorldGenerator implements IWorldGenerator {
 	{
 		addOreSpawn(NuCraft.amethiteOre, world, random, x*16, z*16, 0, 4, 20, 0, 40, NuCraft.riftStone);
 		addOreSpawn(NuCraft.leptrusOre, world, random, x*16, z*16, 0, 10, 20, 0, 60, NuCraft.riftStone);
+		addTreeSpawn(world, random, x*16, z*16, 5, 5);
 	}
 	
     /**
@@ -100,6 +102,16 @@ public class NuCraftWorldGenerator implements IWorldGenerator {
    {
 	   switch(type)
 	   {
+		   case 5:
+			   	WorldGenPlasmaticTrees genPlas = new WorldGenPlasmaticTrees();
+	   			for(int i = 0;i < chancesToSpawn; i++)
+	   			{
+	   				int X = blockXPos + random.nextInt(16);
+	   				int Z = blockZPos + random.nextInt(16);
+	   				int Y = world.getHeightValue(X, Z);
+	   				genPlas.generate(world, random, X, Y, Z);	
+	   			}
+			   break;
 	   		case 1:
 	   			WorldGenElmTrees genElm = new WorldGenElmTrees();
 	   			for(int i = 0;i < chancesToSpawn; i++)

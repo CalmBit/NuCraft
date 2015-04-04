@@ -24,6 +24,7 @@ import calmbit.nucraft.power.ItemCopperCoil;
 import calmbit.nucraft.power.ItemCopperIngot;
 import calmbit.nucraft.power.ItemHeavyCrudeOilBucket;
 import calmbit.nucraft.power.ItemLeadIngot;
+import calmbit.nucraft.power.ItemQuartzOscillator;
 import calmbit.nucraft.power.ItemRubberBall;
 import calmbit.nucraft.power.ItemSiliconFragment;
 import calmbit.nucraft.power.ItemSiliconWafer;
@@ -37,6 +38,12 @@ import calmbit.nucraft.power.Workshop;
 import calmbit.nucraft.rift.BiomeGenRift;
 import calmbit.nucraft.rift.BlockAmethiteOre;
 import calmbit.nucraft.rift.BlockLeptrusOre;
+import calmbit.nucraft.rift.BlockPlasmaticTreeDoor;
+import calmbit.nucraft.rift.BlockPlasmaticTreeLeaves;
+import calmbit.nucraft.rift.BlockPlasmaticTreeLog;
+import calmbit.nucraft.rift.BlockPlasmaticTreePlanks;
+import calmbit.nucraft.rift.BlockPlasmaticTreeSapling;
+import calmbit.nucraft.rift.BlockPlasmaticTreeStairs;
 import calmbit.nucraft.rift.BlockRiftBomb;
 import calmbit.nucraft.rift.BlockRiftCobblestone;
 import calmbit.nucraft.rift.BlockRiftDirt;
@@ -56,6 +63,7 @@ import calmbit.nucraft.rift.ItemAmethiteShovel;
 import calmbit.nucraft.rift.ItemAmethiteSword;
 import calmbit.nucraft.rift.ItemCrawlerEye;
 import calmbit.nucraft.rift.ItemLeptrusIngot;
+import calmbit.nucraft.rift.ItemPlasmaticTreeDoor;
 import calmbit.nucraft.rift.ItemRiftEssenceBucket;
 import calmbit.nucraft.rift.ItemRiftMatter;
 import calmbit.nucraft.rift.ItemRiftPlasmaBucket;
@@ -111,7 +119,10 @@ import calmbit.nucraft.world.PotionAlcohol;
 import calmbit.nucraft.world.TileEntityFermentationTank;
 import calmbit.nucraft.world.VillageNuCraftPlotHandler;
 import calmbit.nucraft.world.WorldGenElmTrees;
+import cpw.mods.fml.client.FMLConfigGuiFactory;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
@@ -143,6 +154,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.potion.Potion;
+import net.minecraft.stats.Achievement;
 import net.minecraft.util.RegistrySimple;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.Teleporter;
@@ -151,6 +163,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenHell;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
+import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -163,7 +176,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerRegisterEv
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-@Mod(modid = "NuCraft", name = "Nu-Craft", version="0.0.1")
+@Mod(modid = "NuCraft", name = "NuCraft", version="0.1.0", guiFactory="cpw.mods.fml.client.FMLConfigGuiFactory")
 public class NuCraft {
 
 	@Instance(value = "NuCraft")
@@ -249,6 +262,21 @@ public class NuCraft {
 	public final static Item latexDroplet = new ItemLatexDroplet();
 	public final static Item rubberBall = new ItemRubberBall();
 	public final static Block fluidSolidifier = new BlockFluidSolidifier();
+	public final static Item quartzOscillator = new ItemQuartzOscillator();
+	public final static Block logPlasmaticTree = new BlockPlasmaticTreeLog();
+	public final static Block leavesPlasmaticTree = new BlockPlasmaticTreeLeaves();
+	public final static Block planksPlasmaticTree = new BlockPlasmaticTreePlanks();
+	public final static Block saplingPlasmaticTree = new BlockPlasmaticTreeSapling();
+	public final static Block doorPlasmaticTree = new BlockPlasmaticTreeDoor();
+	public final static Item doorPlasmaticTreeItem = new ItemPlasmaticTreeDoor();
+	
+	public static Achievement machineFrame;
+	public static Achievement makingEnergy;
+	public static Achievement compression;
+	public static Achievement maercsDeath;
+	public static Achievement riftEntrance;
+	
+	public static AchievementPage nuCraftAchievements;
 	
 	public static Item bambooItem;
 	public static Item heavyCrudeOilBucket;
@@ -260,6 +288,7 @@ public class NuCraft {
 	public static Block stairsHellTree;
 	public static Block stairsCherry;
 	public static Block stairsRubberTree;
+	public static Block stairsPlasmaticTree;
 	public static Block heavyCrudeOilBlock;
 	public static Block acidBlock;
 	public static Block riftPlasmaBlock;
@@ -325,6 +354,7 @@ public class NuCraft {
 		NuCraftEventHandler.INSTANCE.buckets.put(riftPlasmaBlock, riftPlasmaBucket);
 		NuCraftEventHandler.INSTANCE.buckets.put(riftEssenceBlock, riftEssenceBucket);
 		MinecraftForge.EVENT_BUS.register(NuCraftEventHandler.INSTANCE);
+		FMLCommonHandler.instance().bus().register(NuCraftEventHandler.INSTANCE);
 		
 		GameRegistry.registerItem(heavyCrudeOilBucket, "heavyCrudeOilBucket");
 		FluidContainerRegistry.registerFluidContainer(heavyCrudeOil, new ItemStack(heavyCrudeOilBucket), new ItemStack(Items.bucket));
@@ -496,6 +526,31 @@ public class NuCraft {
 		rubberBall.setCreativeTab(tabNuCraftPower);
 		GameRegistry.registerBlock(fluidSolidifier, "fluidSolidifier");
 		fluidSolidifier.setCreativeTab(tabNuCraftPower);
+		GameRegistry.registerItem(quartzOscillator, "quartzOscillator");
+		quartzOscillator.setCreativeTab(tabNuCraftPower);
+		GameRegistry.registerBlock(logPlasmaticTree, "logPlasmaticTree");
+		logPlasmaticTree.setCreativeTab(tabNuCraftRift);
+		GameRegistry.registerBlock(leavesPlasmaticTree, "leavesPlasmaticTree");
+		leavesPlasmaticTree.setCreativeTab(tabNuCraftRift);
+		GameRegistry.registerBlock(planksPlasmaticTree, "planksPlasmaticTree");
+		planksPlasmaticTree.setCreativeTab(tabNuCraftRift);
+		stairsPlasmaticTree = new BlockPlasmaticTreeStairs(planksPlasmaticTree, 0);
+		GameRegistry.registerBlock(stairsPlasmaticTree, "stairsPlasmaticTree");
+		stairsPlasmaticTree.setCreativeTab(tabNuCraftRift);
+		GameRegistry.registerBlock(saplingPlasmaticTree, "saplingPlasmaticTree");
+		saplingPlasmaticTree.setCreativeTab(tabNuCraftRift);
+		GameRegistry.registerBlock(doorPlasmaticTree, "doorPlasmaticTree");
+		GameRegistry.registerItem(doorPlasmaticTreeItem, "doorPlasmaticTreeItem");
+		doorPlasmaticTreeItem.setCreativeTab(tabNuCraftRift);
+		
+		machineFrame = new Achievement("achievement.machineCasing", "machineCasing", 0, 0, NuCraft.machineCasing, (Achievement)null).initIndependentStat().registerStat();
+		makingEnergy = new Achievement("achievement.makingEnergy", "makingEnergy", 2, 2, NuCraft.carbonGenerator, machineFrame).registerStat();
+		compression = new Achievement("achievement.compression", "compression", -2, 2, NuCraft.compressor, machineFrame).registerStat();
+		maercsDeath = new Achievement("achievement.maercsDeath", "maercsDeath", 4, 2, NuCraft.riftMatter, (Achievement)null).initIndependentStat().registerStat();
+		riftEntrance = new Achievement("achievement.riftEntrance","riftEntrance", 4, 4, NuCraft.riftGrass, maercsDeath).registerStat().setSpecial();
+		nuCraftAchievements = new AchievementPage("NuCraft", machineFrame, makingEnergy, compression, maercsDeath, riftEntrance);
+		
+		AchievementPage.registerAchievementPage(nuCraftAchievements);
 		
 		
 		EntityRegistry.registerModEntity(EntityNitroPrimed.class, "NitroPrimed", 0, this, 160, 1, true);
