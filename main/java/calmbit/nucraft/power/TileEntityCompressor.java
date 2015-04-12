@@ -50,7 +50,7 @@ public class TileEntityCompressor extends TileEntity implements IInventory
 
 	@Override
 	public ItemStack getStackInSlot(int index) {
-		return index < this.getSizeInventory() ? this.compressorInventory[index] : null;
+		return index < this.getSizeInventory() && index >= 0 ? this.compressorInventory[index] : null;
 	}
 
 	@Override

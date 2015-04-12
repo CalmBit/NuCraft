@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
@@ -18,6 +19,11 @@ public class TileEntityFluidSolidifier extends TileFluidHandler implements IInve
 	private ItemStack[] fluidSolidifierInventory = new ItemStack[2];
 	private String customFluidSolidifierName;
 	public int solidifyTime;
+	
+    public TileEntityFluidSolidifier() {
+		super();
+		this.tank.setCapacity(16000);
+	}
 
 	@Override
 	public int getSizeInventory() {
@@ -134,6 +140,18 @@ public class TileEntityFluidSolidifier extends TileFluidHandler implements IInve
 	public void setCustomInventoryName(String displayName) 
 	{
 		this.customFluidSolidifierName = displayName;
+	}
+	
+	@Override
+	public void updateEntity() 
+	{
+		if(fluidSolidifierInventory[1] != null && fluidSolidifierInventory[1].getItem().getContainerItem() != null)
+		{
+			FluidStack fluidStack = FluidContainerRegistry.getFluidForFilledItem(fluidSolidifierInventory[1]);
+			if(fluidStack == null) return;
+			if(!fluidStack.equals(tank.getFluid()) && tank.getFluid() != null) return;
+			if(this.fill(null, fluidStack, true) != 0) fluidSolidifierInventory[1] = fluidSolidifierInventory[1].getItem().getContainerItem(fluidSolidifierInventory[1]);
+		}
 	}
 
 }

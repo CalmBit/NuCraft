@@ -45,8 +45,9 @@ public class NuCraftWorldGenerator implements IWorldGenerator {
 	private void generateOverworld(Random random, int x, int z, World world) 
 	{
 		
-		addOreSpawn(NuCraft.copperOre, world, random, x*16, z*16, 0, 8, 20, 0, 64, Blocks.stone);
-		addOreSpawn(NuCraft.leadOre, world, random, x*16, z*16, 0, 6, 20, 0, 50, Blocks.stone);
+		addOreSpawn(NuCraft.copperOre, world, random, x*16, z*16, 0, 8, 15, 0, 64, Blocks.stone);
+		addOreSpawn(NuCraft.leadOre, world, random, x*16, z*16, 0, 6, 15, 0, 50, Blocks.stone);
+		addOreSpawn(NuCraft.tinOre, world, random, x*16, z*16, 0, 12, 10, 0, 32, Blocks.stone);
 		//addOreSpawn(NuCraft.heavyCrudeOilBlock, world, random, x*16, z*16, 10, 20, 1, 10, 40);
 		addTreeSpawn(world, random, x*16, z*16, 2, 1);
 		addTreeSpawn(world, random, x*16, z*16, 2, 3);

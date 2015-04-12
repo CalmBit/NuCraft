@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 public class ItemBottleAlcohol extends Item  {
 
-	public static final int NUM_TYPES = 4;
+	public static final int NUM_TYPES = 5;
 	public IIcon[] textureList = new IIcon[NUM_TYPES];
 	public ItemBottleAlcohol()
 	{
@@ -58,6 +58,8 @@ public class ItemBottleAlcohol extends Item  {
 				return "Lager";
 			case 3:
 				return "Cider";
+			case 4:
+				return "HellCider";
 		}
 	}
 	

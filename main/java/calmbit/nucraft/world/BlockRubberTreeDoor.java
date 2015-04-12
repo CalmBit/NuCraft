@@ -15,12 +15,14 @@ public class BlockRubberTreeDoor extends BlockDoor {
 		super(Material.wood);
 		setBlockName("doorRubberTree");
 		setBlockTextureName("nucraftworld:doorRubberTree");
+		setHardness(3.0F);
+		setStepSound(soundTypeWood);
 	}
 	
 	@Override
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
-        return NuCraft.doorRubberTreeItem;
+      return (p_149650_1_ & 8) != 0 ? null : NuCraft.doorRubberTreeItem;
     }
 
 }

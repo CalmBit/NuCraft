@@ -6,7 +6,7 @@ import net.minecraft.item.ItemHoe;
 public class ItemAmethiteHoe extends ItemHoe {
 
 	public ItemAmethiteHoe() {
-		super(NuCraft.amethiteMaterial);
+		super(NuCraft.amethiteToolMaterial);
 		this.setTextureName("nucraftrift:amethite_hoe");
 		this.setUnlocalizedName("amethiteHoe");
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import calmbit.nucraft.core.NuCraft;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 
@@ -15,6 +16,7 @@ public class ItemHeavyCrudeOilBucket extends ItemBucket {
 		setMaxStackSize(1);
 		setUnlocalizedName("heavyCrudeOilBucket");
 		setTextureName("nucraftpower:oilBucket");
+		setContainerItem(Items.bucket);
 	}
 	
 	@Override

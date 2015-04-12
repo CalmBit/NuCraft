@@ -15,12 +15,14 @@ public class BlockPlasmaticTreeDoor extends BlockDoor {
 		super(Material.wood);
 		setBlockName("doorPlasmaticTree");
 		setBlockTextureName("nucraftrift:doorPlasmaticTree");
+		setHardness(4.0F);
+		setStepSound(soundTypeWood);
 	}
 	
 	@Override
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
-        return NuCraft.doorPlasmaticTreeItem;
+		return (p_149650_1_ & 8) != 0 ? null : NuCraft.doorPlasmaticTreeItem;
     }
 
 }

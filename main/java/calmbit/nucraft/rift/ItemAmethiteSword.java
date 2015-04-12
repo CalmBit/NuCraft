@@ -6,7 +6,7 @@ import net.minecraft.item.ItemSword;
 public class ItemAmethiteSword extends ItemSword {
 
 	public ItemAmethiteSword() {
-		super(NuCraft.amethiteMaterial);
+		super(NuCraft.amethiteToolMaterial);
 		this.setTextureName("nucraftrift:amethite_sword");
 		this.setUnlocalizedName("amethiteSword");
 	}

@@ -6,7 +6,7 @@ import net.minecraft.item.ItemSpade;
 public class ItemAmethiteShovel extends ItemSpade {
 
 	public ItemAmethiteShovel() {
-		super(NuCraft.amethiteMaterial);
+		super(NuCraft.amethiteToolMaterial);
 		this.setTextureName("nucraftrift:amethite_shovel");
 		this.setUnlocalizedName("amethiteShovel");
 	}

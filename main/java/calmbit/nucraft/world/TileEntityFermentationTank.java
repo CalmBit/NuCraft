@@ -34,6 +34,7 @@ public class TileEntityFermentationTank extends TileEntity implements IInventory
 	public final static int BREWTYPE_ALE = 1;
 	public final static int BREWTYPE_LAGER = 2;
 	public final static int BREWTYPE_CIDER = 3;
+	public final static int BREWTYPE_HELL_CIDER = 4;
 	
 	@Override
 	public int getSizeInventory() 
@@ -53,6 +54,8 @@ public class TileEntityFermentationTank extends TileEntity implements IInventory
 				return "Lager";
 			case 3:
 				return "Cider";
+			case 4:
+				return "Hell Cider";
 		}
 	}
 	
@@ -68,6 +71,8 @@ public class TileEntityFermentationTank extends TileEntity implements IInventory
 				return 0x301800;
 			case 3:
 				return 0xDC8F32;
+			case 4:
+				return 0xF82C00;
 		}
 	}
 
@@ -281,12 +286,22 @@ public class TileEntityFermentationTank extends TileEntity implements IInventory
 		else if(this.tankInventory[0] != null && this.tankInventory[2] != null)
 		{
 			boolean apple = this.tankInventory[0].getItem() == Items.apple;
+			boolean hellApple = this.tankInventory[0].getItem() == NuCraft.hellFruit;
 			boolean sulfur = this.tankInventory[2].getItem() == Items.gunpowder;
 			if(apple && sulfur)
 			{
 				if(this.brewType == BREWTYPE_NONE || this.brewType == BREWTYPE_CIDER)
 				{
 					this.brewType = BREWTYPE_CIDER;
+					this.markDirty();
+					return true;
+				}
+			}
+			else if(hellApple && sulfur)
+			{
+				if(this.brewType == BREWTYPE_NONE || this.brewType == BREWTYPE_HELL_CIDER)
+				{
+					this.brewType = BREWTYPE_HELL_CIDER;
 					this.markDirty();
 					return true;
 				}

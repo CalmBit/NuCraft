@@ -13,12 +13,14 @@ public class BlockHellTreeDoor extends BlockDoor {
 		super(Material.wood);
 		setBlockName("doorHellTree");
 		setBlockTextureName("nucraftworld:doorHellTree");
+		setHardness(3.0F);
+		setStepSound(soundTypeWood);
 	}
 	
 	@Override
 	public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
-        return NuCraft.doorHellTreeItem;
+		return (p_149650_1_ & 8) != 0 ? null : NuCraft.doorHellTreeItem;
     }
 
 }
