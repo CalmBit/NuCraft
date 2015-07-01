@@ -20,5 +20,27 @@
 		"sounds": [
 			"mob/maercs/death"
 		]
+	},
+	"mob.daemon.say":{
+		"category":"hostile",
+		"sounds": [
+			"mob/daemon/idle1",
+			"mob/daemon/idle2",
+			"mob/daemon/idle3"
+		]
+	},
+	"mob.daemon.scream":{
+		"category":"hostile",
+		"sounds":[
+			"mob/daemon'/hurt1",
+			"mob/daemon/hurt2",
+			"mob/daemon/hurt3"
+		]
+	},
+	"mob.daemon.death": {
+		"category": "hostile",
+		"sounds": [
+			"mob/daemon/death"
+		]
 	}
 }

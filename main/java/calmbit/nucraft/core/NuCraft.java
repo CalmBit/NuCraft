@@ -7,11 +7,14 @@ import calmbit.nucraft.power.BlockCarbonGenerator;
 import calmbit.nucraft.power.BlockCompressor;
 import calmbit.nucraft.power.BlockCopperIngot;
 import calmbit.nucraft.power.BlockCopperOre;
+import calmbit.nucraft.power.BlockCopperWire;
 import calmbit.nucraft.power.BlockFluidSolidifier;
 import calmbit.nucraft.power.BlockHeavyCrudeOil;
 import calmbit.nucraft.power.BlockLeadOre;
 import calmbit.nucraft.power.BlockMachineCasing;
 import calmbit.nucraft.power.BlockNitro;
+import calmbit.nucraft.power.BlockRailLeptrus;
+import calmbit.nucraft.power.BlockRailSteel;
 import calmbit.nucraft.power.BlockSteelIngot;
 import calmbit.nucraft.power.BlockTinOre;
 import calmbit.nucraft.power.CommonProxy;
@@ -50,6 +53,9 @@ import calmbit.nucraft.rift.BlockPlasmaticTreeLog;
 import calmbit.nucraft.rift.BlockPlasmaticTreePlanks;
 import calmbit.nucraft.rift.BlockPlasmaticTreeSapling;
 import calmbit.nucraft.rift.BlockPlasmaticTreeStairs;
+import calmbit.nucraft.rift.BlockPuris;
+import calmbit.nucraft.rift.BlockPurisGlass;
+import calmbit.nucraft.rift.BlockPurisTorch;
 import calmbit.nucraft.rift.BlockRiftBomb;
 import calmbit.nucraft.rift.BlockRiftCobblestone;
 import calmbit.nucraft.rift.BlockRiftDirt;
@@ -77,10 +83,14 @@ import calmbit.nucraft.rift.ItemLeptrusPickaxe;
 import calmbit.nucraft.rift.ItemLeptrusShovel;
 import calmbit.nucraft.rift.ItemLeptrusSword;
 import calmbit.nucraft.rift.ItemPlasmaticTreeDoor;
+import calmbit.nucraft.rift.ItemPurisShard;
 import calmbit.nucraft.rift.ItemRiftEssenceBucket;
 import calmbit.nucraft.rift.ItemRiftMatter;
 import calmbit.nucraft.rift.ItemRiftPlasmaBucket;
+import calmbit.nucraft.rift.RiftSeerOutpost;
+import calmbit.nucraft.rift.RiftSeerTradeHandler;
 import calmbit.nucraft.rift.TileEntityRiftPortal;
+import calmbit.nucraft.rift.VillageRiftSeerOutpostHandler;
 import calmbit.nucraft.rift.WorldProviderRift;
 import calmbit.nucraft.world.BlockAcid;
 import calmbit.nucraft.world.BlockBarleyBale;
@@ -305,6 +315,13 @@ public class NuCraft {
 	public final static Block tinOre = new BlockTinOre();
 	public final static Item tinIngot = new ItemTinIngot();
 	public final static Item bronzeIngot = new ItemBronzeIngot();
+	public final static Block copperWire = new BlockCopperWire();
+	public final static Block railSteel	= new BlockRailSteel();
+	public final static Block railLeptrus = new BlockRailLeptrus();
+	public final static Block purisBlock = new BlockPuris();
+	public final static Item purisShard = new ItemPurisShard();
+	public final static Block purisGlass = new BlockPurisGlass();
+	public final static Block purisTorch = new BlockPurisTorch();
 	
 	public static Achievement machineFrame;
 	public static Achievement makingEnergy;
@@ -613,6 +630,19 @@ public class NuCraft {
 		tinOre.setCreativeTab(tabNuCraftPower);
 		GameRegistry.registerItem(bronzeIngot, "bronzeIngot");
 		bronzeIngot.setCreativeTab(tabNuCraftPower);
+		GameRegistry.registerBlock(copperWire, "copperWire");
+		GameRegistry.registerBlock(railSteel, "railSteel");
+		railSteel.setCreativeTab(tabNuCraftPower);
+		GameRegistry.registerBlock(railLeptrus,"railLeptrus");
+		railLeptrus.setCreativeTab(tabNuCraftPower);
+		GameRegistry.registerBlock(purisBlock, "purisBlock");
+		purisBlock.setCreativeTab(tabNuCraftRift);
+		GameRegistry.registerItem(purisShard, "purisShard");
+		purisShard.setCreativeTab(tabNuCraftRift);
+		GameRegistry.registerBlock(purisGlass, "purisGlass");
+		purisGlass.setCreativeTab(tabNuCraftRift);
+		GameRegistry.registerBlock(purisTorch, "purisTorch");
+		purisTorch.setCreativeTab(tabNuCraftRift);
 		
 		machineFrame = new Achievement("achievement.machineCasing", "machineCasing", 0, 0, NuCraft.machineCasing, (Achievement)null).initIndependentStat().registerStat();
 		makingEnergy = new Achievement("achievement.makingEnergy", "makingEnergy", 2, 2, NuCraft.carbonGenerator, machineFrame).registerStat();
@@ -673,8 +703,8 @@ public class NuCraft {
 		GameRegistry.addRecipe(new ItemStack(doorCherryItem), new Object[]{".CC", ".CC", ".CC", 'C', NuCraft.planksCherry});
 		GameRegistry.addRecipe(new ItemStack(doorPlasmaticTreeItem), new Object[]{"WW.", "WW.", "WW.", 'W', NuCraft.planksPlasmaticTree});
 		GameRegistry.addRecipe(new ItemStack(doorPlasmaticTreeItem), new Object[]{".WW", ".WW", ".WW", 'W', NuCraft.planksPlasmaticTree});
-		GameRegistry.addRecipe(new ItemStack(steelIngot, 3), new Object[]{"CCC", "III", "...", 'C', NuCraft.carbonWafer, 'I', Items.iron_ingot});
-		GameRegistry.addRecipe(new ItemStack(steelIngot, 3), new Object[]{ "...", "CCC", "III",'C', NuCraft.carbonWafer, 'I', Items.iron_ingot});
+		//GameRegistry.addRecipe(new ItemStack(steelIngot, 3), new Object[]{"CCC", "III", "...", 'C', NuCraft.carbonWafer, 'I', Items.iron_ingot});
+		//GameRegistry.addRecipe(new ItemStack(steelIngot, 3), new Object[]{ "...", "CCC", "III",'C', NuCraft.carbonWafer, 'I', Items.iron_ingot});
 		GameRegistry.addRecipe(new ItemStack(steelBlock), new Object[]{"SSS", "SSS", "SSS", 'S', NuCraft.steelIngot});
 		GameRegistry.addRecipe(new ItemStack(siliconWafer), new Object[]{"SSS","SSS","SSS", 'S', NuCraft.siliconFragment});
 		GameRegistry.addRecipe(new ItemStack(compressor), new Object[]{"RPR","ICI","GGG", 'R', Items.redstone, 'P', Blocks.piston, 'I', Items.iron_ingot, 'C', NuCraft.machineCasing, 'G', Blocks.glass});
@@ -702,7 +732,9 @@ public class NuCraft {
 		GameRegistry.addRecipe(new ItemStack(leptrusChestplate), new Object[]{"L.L", "LLL", "LLL", 'L', NuCraft.leptrusIngot});
 		GameRegistry.addRecipe(new ItemStack(leptrusLeggings), new Object[]{"LLL", "L.L", "L.L", 'L', NuCraft.leptrusIngot});
 		GameRegistry.addRecipe(new ItemStack(leptrusBoots), new Object[]{"...", "L.L", "L.L", 'L', NuCraft.leptrusIngot});
-		
+		GameRegistry.addRecipe(new ItemStack(railSteel, 16), new Object[] {"S.S","STS","S.S",'S',NuCraft.steelIngot,'T',Items.stick});
+		GameRegistry.addRecipe(new ItemStack(railLeptrus,6), new Object[] {"L.L","LTL","LRL", 'L', NuCraft.leptrusIngot, 'T', Items.stick, 'R', Items.redstone});
+		GameRegistry.addRecipe(new ItemStack(purisBlock), new Object[]{"SS","SS",'S',NuCraft.purisShard});
 		GameRegistry.addSmelting(logElm, new ItemStack(Items.coal,1,1), (float) 0.15);
 		GameRegistry.addSmelting(logHellTree, new ItemStack(Items.coal,1,1), (float) 0.15);
 		GameRegistry.addSmelting(logCherry, new ItemStack(Items.coal,1,1), (float)0.15);
@@ -723,13 +755,18 @@ public class NuCraft {
 		DimensionManager.registerDimension(2, 2);
 		
 		VillagerRegistry.instance().registerVillagerId(1000);
+		VillagerRegistry.instance().registerVillagerId(1001);
 		VillagerRegistry.instance().registerVillagerSkin(1000, new ResourceLocation("nucraftpower","textures/entity/villager/electrician.png"));
+		VillagerRegistry.instance().registerVillagerSkin(1001, new ResourceLocation("nucraftrift", "textures/entity/villager/seer.png"));
 		ElectricianTradeHandler eth = new ElectricianTradeHandler();
+		RiftSeerTradeHandler see = new RiftSeerTradeHandler();
 		VillagerRegistry.instance().registerVillageTradeHandler(1000, eth);
+		VillagerRegistry.instance().registerVillageTradeHandler(1001, see );
 		try
 		{
 			MapGenStructureIO.func_143031_a(Workshop.class, "Workshop");
 			MapGenStructureIO.func_143031_a(NuCraftPlot.class, "BarleyPlot");
+			MapGenStructureIO.func_143031_a(RiftSeerOutpost.class, "RiftSeerOutpost");
 		}
 		catch(Exception e)
 		{
@@ -737,6 +774,7 @@ public class NuCraft {
 		}
 		VillagerRegistry.instance().registerVillageCreationHandler(new VillageWorkshopHandler());
 		VillagerRegistry.instance().registerVillageCreationHandler(new VillageNuCraftPlotHandler());
+		VillagerRegistry.instance().registerVillageCreationHandler(new VillageRiftSeerOutpostHandler());
       	NetworkRegistry.INSTANCE.registerGuiHandler(NuCraft.instance, GuiHandlerRegistry.getInstance());
     	GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandlerCarbonGenerator(), GuiHandlerCarbonGenerator.getGuiId());
     	GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandlerCompressor(), GuiHandlerCompressor.getGuiId());

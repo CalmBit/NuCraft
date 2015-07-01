@@ -1,5 +1,7 @@
 package calmbit.nucraft.rift;
 
+import calmbit.nucraft.core.NuCraft;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.Direction;
@@ -32,6 +34,13 @@ public class TeleporterRift extends Teleporter {
 			{
 				finalY = i+1; 
 				break;
+			}
+		}
+		for(int nx = (int)x - 2;nx <= (int)x;nx++)
+		{
+			for(int nz = (int)z - 1;nz <= (int)z + 1;nz++)
+			{
+				worldServerInstance.setBlock((int)nx, (int)finalY-1, (int)nz, NuCraft.purisBlock);
 			}
 		}
 		entity.setLocationAndAngles(x, finalY, z, entity.rotationYaw, entity.rotationPitch);

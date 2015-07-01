@@ -28,6 +28,7 @@ public class AlloyFurnaceRecipes {
 		AddRecipe(new ItemStack(NuCraft.carbonWafer), new ItemStack(Items.iron_ingot), new ItemStack(NuCraft.steelIngot));
 		AddRecipe(new ItemStack(NuCraft.copperIngot), new ItemStack(NuCraft.tinIngot), new ItemStack(NuCraft.bronzeIngot));
 		AddRecipe(new ItemStack(NuCraft.tinIngot), new ItemStack(NuCraft.copperIngot), new ItemStack(NuCraft.bronzeIngot));
+		AddRecipe(new ItemStack(NuCraft.purisShard), new ItemStack(Blocks.sand), new ItemStack(NuCraft.purisGlass));
 	}
 	
 	public void AddRecipe(ItemStack inputOne, ItemStack inputTwo, ItemStack output)
@@ -50,8 +51,9 @@ public class AlloyFurnaceRecipes {
 
             entry = (Entry)iterator.next();
             hash.put(inputOne, inputTwo);
+            hash.put(inputTwo, inputOne);
         }
-        while (!((ItemStackPair)entry.getKey()).equals(new ItemStackPair(inputOne, inputTwo)));
+        while (!((ItemStackPair)entry.getKey()).equals(new ItemStackPair(inputOne, inputTwo)) && !((ItemStackPair)entry.getKey()).equals(new ItemStackPair(inputTwo, inputOne)));
 
         return (ItemStack)entry.getValue();
 	}

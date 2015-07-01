@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
+import calmbit.nucraft.power.BlockRailLeptrus;
 import calmbit.nucraft.rift.EntityMaercs;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -85,7 +86,10 @@ public class NuCraftEventHandler {
             		render.drawStringWithShadow(block.getUnlocalizedName(), width - render.getStringWidth(block.getUnlocalizedName()) - 10, 2 + 7 * 10, Color.WHITE.getRGB());
             		render.drawStringWithShadow("ID: " + block.getIdFromBlock(block), width - render.getStringWidth("ID: " + block.getIdFromBlock(block)) - 10, 2 + 8 * 10, Color.WHITE.getRGB());
             		render.drawStringWithShadow("Meta: " + block.getDamageValue(mc.theWorld, x, y, z), width - render.getStringWidth("Meta: " + block.getDamageValue(mc.theWorld, x, y, z)) - 10, 2 + 9 * 10, Color.WHITE.getRGB());
-            		
+            		if(block instanceof BlockRailLeptrus)
+            		{
+            			render.drawStringWithShadow("Powered:" + ((mc.theWorld.getBlockMetadata(x, y, z) & 8) != 0), width - render.getStringWidth("Powered: " + ((mc.theWorld.getBlockMetadata(x, y, z) & 8) != 0)) - 10, 2 + 8 * 10, Color.WHITE.getRGB());
+            		}
         		}
         	}
         }

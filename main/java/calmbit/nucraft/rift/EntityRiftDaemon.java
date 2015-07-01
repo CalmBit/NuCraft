@@ -18,6 +18,8 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -98,7 +100,7 @@ public class EntityRiftDaemon extends EntityMob {
 	
 	protected String getLivingSound()
     {
-        return "mob.zombie.say";
+        return "nucraftrift:mob.daemon.say";
     }
 
     /**
@@ -106,7 +108,7 @@ public class EntityRiftDaemon extends EntityMob {
      */
     protected String getHurtSound()
     {
-        return "mob.zombie.hurt";
+        return "nucraftrift:mob.daemon.scream";
     }
 
     /**
@@ -114,7 +116,7 @@ public class EntityRiftDaemon extends EntityMob {
      */
     protected String getDeathSound()
     {
-        return "mob.zombie.death";
+        return "nucraftrift:mob.daemon.death";
     }
     
     protected Item getDropItem()
@@ -126,11 +128,10 @@ public class EntityRiftDaemon extends EntityMob {
 		return 0;
 	}
     
-    
-
-	    
-	    
-	    
+	 public boolean isPotionApplicable(PotionEffect p_70687_1_)
+    {
+        return p_70687_1_.getPotionID() == Potion.poison.id ? false : super.isPotionApplicable(p_70687_1_);
+    }
 
 }
 

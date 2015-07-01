@@ -3,6 +3,7 @@ package calmbit.nucraft.core;
 import java.util.Random;
 
 import calmbit.nucraft.rift.WorldGenPlasmaticTrees;
+import calmbit.nucraft.rift.WorldGenPurisSpikes;
 import calmbit.nucraft.world.WorldGenCherryTrees;
 import calmbit.nucraft.world.WorldGenElmTrees;
 import calmbit.nucraft.world.WorldGenHellTrees;
@@ -12,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.ChunkProviderFlat;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -49,6 +51,7 @@ public class NuCraftWorldGenerator implements IWorldGenerator {
 		addOreSpawn(NuCraft.leadOre, world, random, x*16, z*16, 0, 6, 15, 0, 50, Blocks.stone);
 		addOreSpawn(NuCraft.tinOre, world, random, x*16, z*16, 0, 12, 10, 0, 32, Blocks.stone);
 		//addOreSpawn(NuCraft.heavyCrudeOilBlock, world, random, x*16, z*16, 10, 20, 1, 10, 40);
+		if(world.getWorldInfo().getTerrainType() == WorldType.FLAT) return;
 		addTreeSpawn(world, random, x*16, z*16, 2, 1);
 		addTreeSpawn(world, random, x*16, z*16, 2, 3);
 		addTreeSpawn(world, random, x*16, z*16, 5, 4);
@@ -67,6 +70,7 @@ public class NuCraftWorldGenerator implements IWorldGenerator {
 		addOreSpawn(NuCraft.amethiteOre, world, random, x*16, z*16, 0, 4, 20, 0, 40, NuCraft.riftStone);
 		addOreSpawn(NuCraft.leptrusOre, world, random, x*16, z*16, 0, 10, 20, 0, 60, NuCraft.riftStone);
 		addTreeSpawn(world, random, x*16, z*16, 5, 5);
+		addTreeSpawn(world, random, x*16, z*16, 1, 10);
 	}
 	
     /**
@@ -103,6 +107,17 @@ public class NuCraftWorldGenerator implements IWorldGenerator {
    {
 	   switch(type)
 	   {
+  		case 10:
+  			if(random.nextInt(10) != 6) return;
+   			WorldGenPurisSpikes genSpike = new WorldGenPurisSpikes();
+   			for(int i = 0;i < chancesToSpawn; i++)
+   			{
+   				int X = blockXPos + random.nextInt(16);
+   				int Z = blockZPos + random.nextInt(16);
+   				int Y = world.getHeightValue(X, Z);
+   				genSpike.generate(world, random, X, Y, Z);	
+   			}
+   			break;
 		   case 5:
 			   	WorldGenPlasmaticTrees genPlas = new WorldGenPlasmaticTrees();
 	   			for(int i = 0;i < chancesToSpawn; i++)
@@ -166,6 +181,7 @@ public class NuCraftWorldGenerator implements IWorldGenerator {
 	   					}
 	   				}
 	   			}
+	   			break;
 	   }
    }
 	
