@@ -1,4 +1,4 @@
-package calmbit.nucraft.power;
+package calmbit.nucraft.rift;
 
 import java.util.Random;
 
@@ -10,17 +10,17 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGlassBottle;
 
-public class BlockSteelIngot extends Block 
+public class BlockAmethite extends Block 
 {
 
-	public BlockSteelIngot()
+	public BlockAmethite()
 	{
 		super(Material.iron);
 		setHarvestLevel("pickaxe", 2);
 		setHardness(5.0f);
 		setStepSound(Block.soundTypeMetal);
-		setBlockName("steelBlock");
-		setBlockTextureName("nucraftpower:steelBlock");
+		setBlockName("amethiteBlock");
+		setBlockTextureName("nucraftrift:amethiteBlock");
 	}
 	
 	@Override

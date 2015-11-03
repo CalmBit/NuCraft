@@ -63,7 +63,7 @@ public class EntityMaercs extends EntityMob
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-        this.setSize(0.6F, 1.8F);
+        this.setSize(0.8F, 2.05F);
     }
     
     protected void applyEntityAttributes()

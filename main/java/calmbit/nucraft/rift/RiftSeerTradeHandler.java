@@ -16,7 +16,7 @@ public class RiftSeerTradeHandler implements IVillageTradeHandler
 
 	@Override
 	public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) {
-		recipeList.add(new MerchantRecipe(new ItemStack(NuCraft.steelIngot, 3 + random.nextInt(3)), null, new ItemStack(Items.emerald, 1 + random.nextInt(2))));
+		recipeList.add(new MerchantRecipe(new ItemStack(NuCraft.riftMatter, 1 + random.nextInt(2)), null, new ItemStack(Items.emerald, 8 + random.nextInt(4))));
 		recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 6 + random.nextInt(4)), null, new ItemStack(NuCraft.copperBlock, 1 + random.nextInt(3))));
 		recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 20 + random.nextInt(10)), null, new ItemStack(NuCraft.machineCasing, 1)));
 	}

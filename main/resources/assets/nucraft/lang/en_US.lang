@@ -122,3 +122,5 @@ item.leptrus_helmet.name=Leptrus Helmet
 item.leptrus_chestplate.name=Leptrus Chestplate
 item.leptrus_leggings.name=Leptrus Leggings
 item.leptrus_boots.name=Leptrus Boots
+achievement.boingBoing=Boing!
+achievement.boingBoing.desc=Amuse yourself.

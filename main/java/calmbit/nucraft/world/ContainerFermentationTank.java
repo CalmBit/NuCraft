@@ -118,7 +118,7 @@ public class ContainerFermentationTank extends Container
                         return null;
                     }
                 }
-                else if (itemstack1.getItem() == Items.glass_bottle && ((Slot)this.inventorySlots.get(4)).getStack() == null)
+                else if (itemstack1.getItem() == NuCraft.glassStein && ((Slot)this.inventorySlots.get(4)).getStack() == null)
                 {
                     if (!this.mergeItemStack(itemstack1, 4, 5, false))
                     {

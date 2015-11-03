@@ -328,7 +328,7 @@ public class TileEntityFermentationTank extends TileEntity implements IInventory
 	public void ferment()
 	{
 		this.unitsLeft++;
-		/*if(this.unitsLeft != 0 && this.brewType != BREWTYPE_NONE && this.tankInventory[4] != null && this.tankInventory[4].getItem() == Items.glass_bottle && this.tankInventory[4].stackSize == 1)
+		/*if(this.unitsLeft != 0 && this.brewType != BREWTYPE_NONE && this.tankInventory[4] != null && this.tankInventory[4].getItem() == NuCraft.glassStein && this.tankInventory[4].stackSize == 1)
 		{
 			this.tankInventory[4] = new ItemStack(NuCraft.bottleAlcohol, 1, this.brewType);
 			this.unitsLeft--;
@@ -370,7 +370,7 @@ public class TileEntityFermentationTank extends TileEntity implements IInventory
 					}
 				}
 			}
-			if(this.unitsLeft != 0 && this.brewType != BREWTYPE_NONE && this.tankInventory[4] != null && this.tankInventory[4].getItem() == Items.glass_bottle && this.tankInventory[4].stackSize == 1)
+			if(this.unitsLeft != 0 && this.brewType != BREWTYPE_NONE && this.tankInventory[4] != null && this.tankInventory[4].getItem() == NuCraft.glassStein && this.tankInventory[4].stackSize == 1)
 			{
 				this.tankInventory[4] = new ItemStack(NuCraft.bottleAlcohol, 1, this.brewType);
 				this.unitsLeft--;

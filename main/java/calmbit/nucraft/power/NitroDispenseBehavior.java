@@ -11,7 +11,6 @@ public class NitroDispenseBehavior implements IBehaviorDispenseItem{
 	@Override
 	public ItemStack dispense(IBlockSource par1IBlockSource, ItemStack par2ItemStack)
     {
-		System.err.println(par1IBlockSource.getBlockMetadata());
         EnumFacing var3 = EnumFacing.getFront(metadataToFacing(par1IBlockSource.getBlockMetadata()));
         double var4 = par1IBlockSource.getX() + (double)var3.getFrontOffsetX();
         double var6 = par1IBlockSource.getY() + (double)var3.getFrontOffsetY();

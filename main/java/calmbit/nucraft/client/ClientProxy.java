@@ -2,10 +2,13 @@ package calmbit.nucraft.client;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.entity.projectile.EntityRubberBall;
 import net.minecraftforge.client.MinecraftForgeClient;
 import calmbit.nucraft.core.NuCraft;
 import calmbit.nucraft.power.CommonProxy;
 import calmbit.nucraft.power.EntityNitroPrimed;
+import calmbit.nucraft.power.ItemRubberBall;
 import calmbit.nucraft.power.RenderNitroPrimed;
 import calmbit.nucraft.rift.EntityMaercs;
 import calmbit.nucraft.rift.EntityRiftBombPrimed;
@@ -38,5 +41,6 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityRiftCrawler.class, new RenderRiftCrawler());
 		RenderingRegistry.registerEntityRenderingHandler(EntityRiftDaemon.class, new RenderRiftDaemon());
 		RenderingRegistry.registerEntityRenderingHandler(EntityRiftBombPrimed.class, new RenderRiftBombPrimed());
+		RenderingRegistry.registerEntityRenderingHandler(EntityRubberBall.class, new RenderSnowball(NuCraft.rubberBall));
 	}
 }
